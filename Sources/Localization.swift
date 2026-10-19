@@ -121,7 +121,7 @@ enum L10n {
         "RAR Aracını Kur…": "Install RAR Tool…",
         "%@ Hakkında": "About %@", "%@'ı Gizle": "Hide %@", "%@'dan Çık": "Quit %@",
         "\n\n7-Zip © Igor Pavlov (GNU LGPL)\nRAR açma: unRAR kodu © Alexander Roshal": "\n\n7-Zip © Igor Pavlov (GNU LGPL)\nRAR extraction: unRAR code © Alexander Roshal",
-        "Mcrar • Hızlı Sıkıştır": "Mcrar • Quick Compress",
+        "mcRAR • Hızlı Sıkıştır": "mcRAR • Quick Compress",
         // Dosya ilişkilendirme
         "Disk görüntüleri: ISO, DMG, VHD, VMDK": "Disk images: ISO, DMG, VHD, VMDK", "Paketler: PKG, JAR, APK, DEB, RPM, MSI": "Packages: PKG, JAR, APK, DEB, RPM, MSI",
         "Önerilmez: çift tıklayınca disk bağlanmaz, arşiv gibi açılır.": "Not recommended: double-clicking will open it as an archive instead of mounting it.",
@@ -139,14 +139,14 @@ enum L10n {
         // Güncelleme
         "Güncellemeleri Denetle…": "Check for Updates…", "Güncelleme denetlenemedi": "Could not check for updates",
         "GitHub'a ulaşılamadı. İnternet bağlantınızı kontrol edin.": "GitHub could not be reached. Check your internet connection.",
-        "Güncel sürümü kullanıyorsunuz": "You are up to date", "Mcrar %@ en son sürüm.": "Mcrar %@ is the latest version.",
-        "Mcrar %@ sürümü çıktı": "Mcrar %@ is available",
+        "Güncel sürümü kullanıyorsunuz": "You are up to date", "mcRAR %@ en son sürüm.": "mcRAR %@ is the latest version.",
+        "mcRAR %@ sürümü çıktı": "mcRAR %@ is available",
         "Kullandığınız sürüm: %@. Yeni sürümü GitHub'dan indirip Uygulamalar klasörüne sürükleyerek güncelleyebilirsiniz.": "You are using version %@. Download the new version from GitHub and drag it into Applications to update.",
         "İndir": "Download", "Daha Sonra": "Later", "Bu Sürümü Atla": "Skip This Version",
         // Hızlı eylemler
-        "Mcrar ile Aç": "Open with Mcrar", "Mcrar: Buraya Çıkart": "Mcrar: Extract Here", "Mcrar: Klasöre Çıkart": "Mcrar: Extract to Folder",
-        "Mcrar ile Sıkıştır…": "Compress with Mcrar…",
-        "Mcrar • Şuraya Çıkart…": "Mcrar • Extract To…", "Mcrar • Test Et": "Mcrar • Test",
+        "mcRAR ile Aç": "Open with mcRAR", "mcRAR: Buraya Çıkart": "mcRAR: Extract Here", "mcRAR: Klasöre Çıkart": "mcRAR: Extract to Folder",
+        "mcRAR ile Sıkıştır…": "Compress with mcRAR…",
+        "mcRAR • Şuraya Çıkart…": "mcRAR • Extract To…", "mcRAR • Test Et": "mcRAR • Test",
         // Sıkıştırma penceresi
         "TAR (sıkıştırmasız)": "TAR (uncompressed)", "Arşiv Oluştur": "Create Archive", "/yol/arşiv.rar": "/path/archive.rar", "Gözat…": "Browse…",
         "Depola (sıkıştırma yok)": "Store (no compression)", "En hızlı": "Fastest", "Hızlı": "Fast", "Normal": "Normal", "İyi": "Good", "En iyi": "Best",

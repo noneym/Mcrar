@@ -20,14 +20,14 @@ enum QuickActions {
     static var actions: [Action] {
         [
             // Üst seviye (Servis)
-            Action(name: L("Mcrar ile Aç"), flag: nil, topLevel: true, fileTypes: archiveTypes),
-            Action(name: L("Mcrar: Buraya Çıkart"), flag: "--extract-here", topLevel: true, fileTypes: archiveTypes),
-            Action(name: L("Mcrar: Klasöre Çıkart"), flag: "--extract-folder", topLevel: true, fileTypes: archiveTypes),
-            Action(name: L("Mcrar ile Sıkıştır…"), flag: "--compress-dialog", topLevel: true, fileTypes: anyType),
+            Action(name: L("mcRAR ile Aç"), flag: nil, topLevel: true, fileTypes: archiveTypes),
+            Action(name: L("mcRAR: Buraya Çıkart"), flag: "--extract-here", topLevel: true, fileTypes: archiveTypes),
+            Action(name: L("mcRAR: Klasöre Çıkart"), flag: "--extract-folder", topLevel: true, fileTypes: archiveTypes),
+            Action(name: L("mcRAR ile Sıkıştır…"), flag: "--compress-dialog", topLevel: true, fileTypes: anyType),
             // Hızlı Eylemler alt menüsü
-            Action(name: L("Mcrar • Şuraya Çıkart…"), flag: "--extract-to", topLevel: false, fileTypes: archiveTypes),
-            Action(name: L("Mcrar • Test Et"), flag: "--test", topLevel: false, fileTypes: archiveTypes),
-            Action(name: L("Mcrar • Hızlı Sıkıştır"), flag: "--compress", topLevel: false, fileTypes: anyType),
+            Action(name: L("mcRAR • Şuraya Çıkart…"), flag: "--extract-to", topLevel: false, fileTypes: archiveTypes),
+            Action(name: L("mcRAR • Test Et"), flag: "--test", topLevel: false, fileTypes: archiveTypes),
+            Action(name: L("mcRAR • Hızlı Sıkıştır"), flag: "--compress", topLevel: false, fileTypes: anyType),
         ]
     }
 
@@ -43,8 +43,8 @@ enum QuickActions {
         try? fm.createDirectory(atPath: servicesDir, withIntermediateDirectories: true)
         // Eski sürümleri temizle
         if let items = try? fm.contentsOfDirectory(atPath: servicesDir) {
-            for i in items where i.hasPrefix("RAR • ") || i.hasPrefix("Mcrar • ") || i.hasPrefix("Mcrar ile ") || i.hasPrefix("Mcrar: ")
-                || i.hasPrefix("Open with Mcrar") || i.hasPrefix("Compress with Mcrar") {
+            for i in items where i.hasPrefix("RAR • ") || i.hasPrefix("mcRAR • ") || i.hasPrefix("mcRAR ile ") || i.hasPrefix("mcRAR: ")
+                || i.hasPrefix("Open with mcRAR") || i.hasPrefix("Compress with mcRAR") {
                 try? fm.removeItem(atPath: (servicesDir as NSString).appendingPathComponent(i))
             }
         }

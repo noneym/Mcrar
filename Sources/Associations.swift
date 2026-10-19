@@ -53,7 +53,7 @@ enum Associations {
         return FileManager.default.displayName(atPath: url.path).replacingOccurrences(of: ".app", with: "")
     }
 
-    /// Bu tür Mcrar'a verilmeden önceki uygulama; kayıt yoksa türü açabilen sistem uygulaması, o da yoksa ilk aday
+    /// Bu tür mcRAR'a verilmeden önceki uygulama; kayıt yoksa türü açabilen sistem uygulaması, o da yoksa ilk aday
     static func previousHandler(for t: UTType) -> URL? {
         let saved = UserDefaults.standard.dictionary(forKey: previousKey) as? [String: String]
         if let p = saved?[t.identifier], FileManager.default.fileExists(atPath: p) { return URL(fileURLWithPath: p) }

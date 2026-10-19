@@ -5,13 +5,13 @@
 #   1) Xcode → Settings → Accounts → hesabınız → Manage Certificates… → + → "Developer ID Application"
 #   2) Notarizasyon için ya signing/asc.json + ~/.appstoreconnect/private_keys/AuthKey_<ID>.p8 (App Store Connect API
 #      anahtarı, release-appstore.sh ile ortak) bulunsun ya da bir notarytool profili oluşturun:
-#        xcrun notarytool store-credentials Mcrar --apple-id APPLE_ID --team-id TEAMID
+#        xcrun notarytool store-credentials mcRAR --apple-id APPLE_ID --team-id TEAMID
 #      (parolayı komut kendisi sorar; betiğe yazılmaz). NOTARY_USE_PROFILE=1 ile profil zorlanır;
 #      NOTARY_KEY_ID / NOTARY_KEY ile asc.json'dakinden farklı bir API anahtarı kullanılabilir.
 #
-# Kullanım:  ./release.sh                      → sertifikayı otomatik bulur, profil adı "Mcrar"
+# Kullanım:  ./release.sh                      → sertifikayı otomatik bulur, profil adı "mcRAR"
 #            ./release.sh publish              → ek olarak DMG ve ZIP'i GitHub Releases'a yükler (gh gerekir)
-#            IDENTITY="Developer ID Application: Ad (TEAMID)" PROFILE=Mcrar ./release.sh
+#            IDENTITY="Developer ID Application: Ad (TEAMID)" PROFILE=mcRAR ./release.sh
 set -e
 cd "$(dirname "$0")"
 # Her zaman yeniden derle: eski bir build/ kopyası Info.plist'teki sürümden geride kalabilir (1.4.3'te yaşandı)
@@ -19,9 +19,9 @@ cd "$(dirname "$0")"
 # exFAT/ağ disklerinde codesign "._" yan dosyaları bırakır; doğrulama ve notarizasyon bozulur. Paket APFS'teki geçici bir
 # klasöre alınır (ditto, xattr'ları yerel biçime taşır), imzalama ve paketleme oradan yapılır; çıktılar yine dist/ altına yazılır.
 WORK=$(mktemp -d)
-ditto "build/Mcrar.app" "$WORK/Mcrar.app"
-APP="$WORK/Mcrar.app"
-PROFILE="${PROFILE:-Mcrar}"
+ditto "build/mcRAR.app" "$WORK/mcRAR.app"
+APP="$WORK/mcRAR.app"
+PROFILE="${PROFILE:-mcRAR}"
 # Notarizasyon kimliği: App Store Connect API anahtarı varsa o kullanılır (signing/asc.json'daki key_id/issuer +
 # ~/.appstoreconnect/private_keys/AuthKey_<ID>.p8, release-appstore.sh ile aynı); yoksa anahtar zincirindeki "$PROFILE" profili.
 NOTARY=(--keychain-profile "$PROFILE")
@@ -45,7 +45,7 @@ codesign --force --options runtime --timestamp --sign "$IDENTITY" "$APP"
 codesign --verify --deep --strict --verbose=2 "$APP"
 echo "▸ Notarize için paketleniyor"
 mkdir -p dist
-ZIP="dist/Mcrar-$VERSION.zip"
+ZIP="dist/mcRAR-$VERSION.zip"
 rm -f "$ZIP"
 ditto -c -k --keepParent "$APP" "$ZIP"
 echo "▸ Apple'a gönderiliyor ($NOTARY_DESC)"
@@ -57,12 +57,12 @@ ditto -c -k --keepParent "$APP" "$ZIP"
 spctl --assess --type execute --verbose=2 "$APP" && echo "✔ Gatekeeper onaylı: $ZIP"
 
 echo "▸ DMG oluşturuluyor"
-DMG="dist/Mcrar-$VERSION.dmg"
+DMG="dist/mcRAR-$VERSION.dmg"
 STAGE=$(mktemp -d)
 cp -R "$APP" "$STAGE/"
 ln -s /Applications "$STAGE/Applications"
 rm -f "$DMG"
-hdiutil create -volname "Mcrar" -srcfolder "$STAGE" -ov -format UDZO -quiet "$DMG"
+hdiutil create -volname "mcRAR" -srcfolder "$STAGE" -ov -format UDZO -quiet "$DMG"
 rm -rf "$STAGE"
 codesign --force --timestamp --sign "$IDENTITY" "$DMG"
 echo "▸ DMG notarize ediliyor"
@@ -77,11 +77,11 @@ if [[ "$1" == "publish" ]]; then
   if gh release view "v$VERSION" >/dev/null 2>&1; then
     gh release upload "v$VERSION" "$DMG" "$ZIP" --clobber
   else
-    # Yalnızca bu sürümün bölümü ("## Mcrar <sürüm>" başlığından bir sonraki "## " başlığına kadar) sürüm notu olur (#7)
+    # Yalnızca bu sürümün bölümü ("## mcRAR <sürüm>" başlığından bir sonraki "## " başlığına kadar) sürüm notu olur (#7)
     NOTES=$(mktemp)
-    awk -v v="$VERSION" '/^## /{p = ($0 ~ ("^## Mcrar " v "([^0-9.]|$)"))} p' RELEASE_NOTES.md > "$NOTES"
-    [[ -s "$NOTES" ]] || { echo "RELEASE_NOTES.md içinde '## Mcrar $VERSION' bölümü yok"; rm -f "$NOTES"; exit 1; }
-    gh release create "v$VERSION" "$DMG" "$ZIP" --title "Mcrar $VERSION" --notes-file "$NOTES"
+    awk -v v="$VERSION" '/^## /{p = ($0 ~ ("^## mcRAR " v "([^0-9.]|$)"))} p' RELEASE_NOTES.md > "$NOTES"
+    [[ -s "$NOTES" ]] || { echo "RELEASE_NOTES.md içinde '## mcRAR $VERSION' bölümü yok"; rm -f "$NOTES"; exit 1; }
+    gh release create "v$VERSION" "$DMG" "$ZIP" --title "mcRAR $VERSION" --notes-file "$NOTES"
     rm -f "$NOTES"
   fi
   echo "✔ Yayınlandı: $(gh release view "v$VERSION" --json url -q .url)"

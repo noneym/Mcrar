@@ -1,8 +1,8 @@
-# Privacy Policy — Easy Mac Archiver / Mcrar
+# Privacy Policy — Easy Mac Archiver / mcRAR
 
 _Last updated: 9 October 2026_
 
-Easy Mac Archiver (Mac App Store) and Mcrar (GitHub) are archive utilities developed by Berk SAY
+Easy Mac Archiver (Mac App Store) and mcRAR (GitHub) are archive utilities developed by Berk SAY
 
 **No data collection.** The apps do not collect, store, transmit or sell any personal data. There are no accounts, no analytics, no advertising and no third-party SDKs.
 

@@ -26,7 +26,7 @@ enum UpdateChecker {
     static func check(manual: Bool) {
         var req = URLRequest(url: URL(string: "https://api.github.com/repos/\(repo)/releases/latest")!)
         req.setValue("application/vnd.github+json", forHTTPHeaderField: "Accept")
-        req.setValue("Mcrar/\(currentVersion)", forHTTPHeaderField: "User-Agent")
+        req.setValue("mcRAR/\(currentVersion)", forHTTPHeaderField: "User-Agent")
         req.timeoutInterval = 15
         URLSession.shared.dataTask(with: req) { data, response, error in
             DispatchQueue.main.async {
@@ -50,7 +50,7 @@ enum UpdateChecker {
                     // Otomatik denetimde açık bir soru/işlem varsa bitmesini bekle
                     if manual { show() } else { Dialogs.whenIdle(show) }
                 } else if manual {
-                    Dialogs.info(L("Güncel sürümü kullanıyorsunuz"), LF("Mcrar %@ en son sürüm.", currentVersion))
+                    Dialogs.info(L("Güncel sürümü kullanıyorsunuz"), LF("mcRAR %@ en son sürüm.", currentVersion))
                 }
             }
         }.resume()
@@ -70,7 +70,7 @@ enum UpdateChecker {
     private static func present(latest: String, page: URL, notes: String) {
         Dialogs.activate()
         let alert = NSAlert()
-        alert.messageText = LF("Mcrar %@ sürümü çıktı", latest)
+        alert.messageText = LF("mcRAR %@ sürümü çıktı", latest)
         var info = LF("Kullandığınız sürüm: %@. Yeni sürümü GitHub'dan indirip Uygulamalar klasörüne sürükleyerek güncelleyebilirsiniz.", currentVersion)
         // Markdown işaretlerini sadeleştir, ilk satırları göster
         let lines = notes.components(separatedBy: "\n").map { line -> String in

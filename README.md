@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="docs/icon.png" width="128" alt="Mcrar icon">
+  <img src="docs/icon.png" width="128" alt="mcRAR icon">
 </p>
 
-<h1 align="center">Mcrar</h1>
+<h1 align="center">mcRAR</h1>
 
 <p align="center">
   A WinRAR-style archive manager for macOS, built on the official <code>7zz</code> build of 7-Zip, with optional RAR creation through RARLAB's own <code>rar</code> tool.<br>
@@ -13,7 +13,7 @@
 
 ## Why
 
-macOS has no native way to open `.rar` files, and the few GUI tools around either hide what they are doing or cannot handle encrypted or multi-part archives well. Mcrar wraps Igor Pavlov's `7zz` engine (and, if you install it, RARLAB's `rar` for creating RAR archives) in a small native app that behaves like WinRAR on Windows: double-click to browse, right-click in Finder to extract or compress, drag files out of the archive window, get asked for a password only when one is actually needed.
+macOS has no native way to open `.rar` files, and the few GUI tools around either hide what they are doing or cannot handle encrypted or multi-part archives well. mcRAR wraps Igor Pavlov's `7zz` engine (and, if you install it, RARLAB's `rar` for creating RAR archives) in a small native app that behaves like WinRAR on Windows: double-click to browse, right-click in Finder to extract or compress, drag files out of the archive window, get asked for a password only when one is actually needed.
 
 The whole app is a few thousand lines of Swift, needs no Xcode project (Command Line Tools are enough) and carries no third-party frameworks.
 
@@ -40,7 +40,7 @@ The whole app is a few thousand lines of Swift, needs no Xcode project (Command 
 **Extracting**
 - Extract here (⌘E), extract to a folder named after the archive (⌥⌘E), extract to a chosen folder (⇧⌘E), or extract only the selected items.
 - If the destination already contains items with the same names you are asked whether to overwrite, auto-rename, or cancel.
-- Drag items from the archive window onto a Finder folder or the Desktop: Mcrar asks once, then extracts the dragged items there with a progress window.
+- Drag items from the archive window onto a Finder folder or the Desktop: mcRAR asks once, then extracts the dragged items there with a progress window.
 - Progress window with overall percentage, estimated remaining time, elapsed time, the current file, and a collapsible log of processed files.
 
 **Encrypted archives**
@@ -60,12 +60,12 @@ The whole app is a few thousand lines of Swift, needs no Xcode project (Command 
 - The interface is in English or Turkish, following the system language (or the per-app language chosen in System Settings → General → Language & Region). `MCRAR_LANG=tr|en` overrides it.
 
 **Updates**
-- Once a day Mcrar checks GitHub Releases for a newer version and offers to download it; *Mcrar → Check for Updates…* runs the check on demand. Set `MCRAR_NO_UPDATE_CHECK=1` to disable it.
+- Once a day mcRAR checks GitHub Releases for a newer version and offers to download it; *mcRAR → Check for Updates…* runs the check on demand. Set `MCRAR_NO_UPDATE_CHECK=1` to disable it.
 
 **Finder integration**
-- Right-click menu in Finder: *Open with Mcrar*, *Mcrar: Extract Here*, *Mcrar: Extract to Folder* (shown for archives) and *Compress with Mcrar…* (shown for any selection) appear directly in the context menu; *Extract To…*, *Test* and *Quick Compress* (default format from Settings, no dialog) live in the *Quick Actions* submenu. They are installed automatically the first time the app runs from Applications; *Mcrar → (Re)install Finder Quick Actions* repairs them.
-- Registers as the owner of `.rar` and as an alternate handler for ZIP, 7z, TAR, GZ, BZ2, XZ, ZST, CAB, ISO and more, so they appear in *Open With*. On first launch a *File Associations* dialog lets you pick which types should open with Mcrar; it is always available from the app menu.
-- If you launch Mcrar from the DMG or from Downloads it offers to move itself to Applications, because the Finder menu and the associations only work from there.
+- Right-click menu in Finder: *Open with mcRAR*, *mcRAR: Extract Here*, *mcRAR: Extract to Folder* (shown for archives) and *Compress with mcRAR…* (shown for any selection) appear directly in the context menu; *Extract To…*, *Test* and *Quick Compress* (default format from Settings, no dialog) live in the *Quick Actions* submenu. They are installed automatically the first time the app runs from Applications; *mcRAR → (Re)install Finder Quick Actions* repairs them.
+- Registers as the owner of `.rar` and as an alternate handler for ZIP, 7z, TAR, GZ, BZ2, XZ, ZST, CAB, ISO and more, so they appear in *Open With*. On first launch a *File Associations* dialog lets you pick which types should open with mcRAR; it is always available from the app menu.
+- If you launch mcRAR from the DMG or from Downloads it offers to move itself to Applications, because the Finder menu and the associations only work from there.
 
 ## Supported formats
 
@@ -80,7 +80,7 @@ Everything is read, extracted and tested with the bundled `7zz` (including RAR, 
 
 ## Editions
 
-| | Easy Mac Archiver (Mac App Store) | Mcrar (GitHub) |
+| | Easy Mac Archiver (Mac App Store) | mcRAR (GitHub) |
 |---|---|---|
 | Price | $0.99 | free |
 | Open / extract RAR, ZIP, 7z, TAR, ISO… | ✓ | ✓ |
@@ -94,7 +94,7 @@ Everything is read, extracted and tested with the bundled `7zz` (including RAR, 
 
 ## Download
 
-Ready-made, Developer ID-signed and Apple-notarized builds are on the [Releases page](https://github.com/noneym/Mcrar/releases/latest): open the DMG, drag Mcrar into Applications and launch it. The first launch installs the Finder right-click menu and asks which file types should open with Mcrar. No Gatekeeper warnings.
+Ready-made, Developer ID-signed and Apple-notarized builds are on the [Releases page](https://github.com/noneym/Mcrar/releases/latest): open the DMG, drag mcRAR into Applications and launch it. The first launch installs the Finder right-click menu and asks which file types should open with mcRAR. No Gatekeeper warnings.
 
 With [Homebrew](https://brew.sh):
 
@@ -104,7 +104,7 @@ brew install --cask noneym/tap/mcrar
 
 `brew upgrade --cask mcrar` updates it; the cask lives in [noneym/homebrew-tap](https://github.com/noneym/homebrew-tap) and always points at the latest notarized DMG.
 
-Since 1.4 the app bundles only the 7-Zip engine (universal: Apple Silicon and Intel). RARLAB's `rar`/`unrar` are no longer included because their licence does not allow redistributing `rar`. RAR archives are opened with 7-Zip; to create RAR archives, Mcrar walks you through downloading "RAR for macOS" from rarlab.com and pointing the app at it.
+Since 1.4 the app bundles only the 7-Zip engine (universal: Apple Silicon and Intel). RARLAB's `rar`/`unrar` are no longer included because their licence does not allow redistributing `rar`. RAR archives are opened with 7-Zip; to create RAR archives, mcRAR walks you through downloading "RAR for macOS" from rarlab.com and pointing the app at it.
 
 ## Requirements
 
@@ -116,27 +116,27 @@ Since 1.4 the app bundles only the 7-Zip engine (universal: Apple Silicon and In
 
 ```bash
 git clone https://github.com/noneym/Mcrar.git
-cd Mcrar
+cd mcRAR
 ./fetch-tools.sh      # downloads 7zz from 7-zip.org into tools/
-./build.sh install    # compiles, installs /Applications/Mcrar.app, registers Finder Quick Actions
+./build.sh install    # compiles, installs /Applications/mcRAR.app, registers Finder Quick Actions
 ```
 
-`./build.sh` alone only builds `build/Mcrar.app`. The install step never kills a running Mcrar; if an extraction is in progress it waits for the app to quit.
+`./build.sh` alone only builds `build/mcRAR.app`. The install step never kills a running mcRAR; if an extraction is in progress it waits for the app to quit.
 
-The `7zz` binary is **not** part of this repository. `fetch-tools.sh` downloads it from its official source so that its licence stays with its author. RARLAB's `rar` is never bundled; the app installs a copy the user downloads into `~/Library/Application Support/Mcrar/rar`.
+The `7zz` binary is **not** part of this repository. `fetch-tools.sh` downloads it from its official source so that its licence stays with its author. RARLAB's `rar` is never bundled; the app installs a copy the user downloads into `~/Library/Application Support/mcRAR/rar`.
 
 After installing:
-- To choose which file types open with Mcrar: Mcrar menu → *File Associations…* (also shown once on first launch).
+- To choose which file types open with mcRAR: mcRAR menu → *File Associations…* (also shown once on first launch).
 - If the Quick Actions do not show up in Finder: System Settings → General → Login Items & Extensions → Extensions → Finder and enable them (macOS 13–14: Privacy & Security → Extensions → Finder). The App Store edition uses app services instead; those are enabled under Keyboard → Keyboard Shortcuts… → Services → Files and Folders.
 
 ### Code signing
 
-`build.sh` produces an ad-hoc signed app that runs on the Mac it was built on. If you pass that `.app` to someone else, Gatekeeper will complain; they can right-click → Open once, or run `xattr -cr /Applications/Mcrar.app`.
+`build.sh` produces an ad-hoc signed app that runs on the Mac it was built on. If you pass that `.app` to someone else, Gatekeeper will complain; they can right-click → Open once, or run `xattr -cr /Applications/mcRAR.app`.
 
-For a build that opens anywhere without warnings, `release.sh` signs with a Developer ID certificate, submits the app to Apple's notary service, staples the ticket and writes `dist/Mcrar-<version>.zip`. It needs an Apple Developer Program membership, a "Developer ID Application" certificate (Xcode → Settings → Accounts → Manage Certificates…) and a `notarytool` keychain profile:
+For a build that opens anywhere without warnings, `release.sh` signs with a Developer ID certificate, submits the app to Apple's notary service, staples the ticket and writes `dist/mcRAR-<version>.zip`. It needs an Apple Developer Program membership, a "Developer ID Application" certificate (Xcode → Settings → Accounts → Manage Certificates…) and a `notarytool` keychain profile:
 
 ```bash
-xcrun notarytool store-credentials Mcrar --apple-id you@example.com --team-id TEAMID
+xcrun notarytool store-credentials mcRAR --apple-id you@example.com --team-id TEAMID
 ./release.sh
 ```
 
@@ -145,7 +145,7 @@ xcrun notarytool store-credentials Mcrar --apple-id you@example.com --team-id TE
 The Quick Actions launch the app like this:
 
 ```bash
-open -n -a /Applications/Mcrar.app --args --extract-here /path/archive.rar
+open -n -a /Applications/mcRAR.app --args --extract-here /path/archive.rar
 ```
 
 | Flag | Effect |
@@ -156,7 +156,7 @@ open -n -a /Applications/Mcrar.app --args --extract-here /path/archive.rar
 | `--test` | test the archive and report |
 | `--compress` | create an archive with the default format and level from Settings, no dialog |
 | `--compress-dialog` | open the Create Archive dialog |
-| `--set-default` | make Mcrar the default app for `.rar` |
+| `--set-default` | make mcRAR the default app for `.rar` |
 | `--install-quick-actions` | (re)install the Finder Quick Actions |
 
 ## Project layout
@@ -168,7 +168,7 @@ Sources/ArchiveWindow.swift  main window: outline view, toolbar, search, drag & 
 Sources/Dialogs.swift        password / overwrite prompts, progress window, Create Archive dialog
 Sources/Prefs.swift          user defaults and the Settings window
 Sources/QuickActions.swift   generates the .workflow bundles for the Finder right-click menu
-Sources/Associations.swift   "which files open with Mcrar" dialog (first launch + app menu)
+Sources/Associations.swift   "which files open with mcRAR" dialog (first launch + app menu)
 Sources/Installer.swift      offers to move the app to Applications when run from a DMG or Downloads
 Sources/UpdateChecker.swift  daily GitHub Releases check
 Sources/RarTools.swift       locating / installing the user's RARLAB rar
@@ -203,7 +203,7 @@ Environment variables used for automated testing (no screen recording permission
 - **RAR** © Alexander Roshal, RARLAB. Not bundled; the user installs their own copy for creating RAR archives. See [rarlab.com](https://www.rarlab.com).
 - **7-Zip** © Igor Pavlov, licensed under GNU LGPL with unRAR restriction and BSD 3-clause for some parts. See [7-zip.org](https://www.7-zip.org).
 
-Neither project is affiliated with Mcrar. "WinRAR" and "RAR" are trademarks of their owner.
+Neither project is affiliated with mcRAR. "WinRAR" and "RAR" are trademarks of their owner.
 
 ## Author
 
@@ -211,4 +211,4 @@ Neither project is affiliated with Mcrar. "WinRAR" and "RAR" are trademarks of t
 
 ## License
 
-The Mcrar source code is released under the [MIT License](LICENSE).
+The mcRAR source code is released under the [MIT License](LICENSE).

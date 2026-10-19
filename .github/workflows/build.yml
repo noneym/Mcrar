@@ -14,14 +14,14 @@ jobs:
       - name: Fetch 7-Zip
         run: ./fetch-tools.sh
 
-      - name: Build Mcrar.app
+      - name: Build mcRAR.app
         run: ./build.sh
 
       - name: Zip app
-        run: ditto -c -k --keepParent build/Mcrar.app build/Mcrar.zip
+        run: ditto -c -k --keepParent build/mcRAR.app build/mcRAR.zip
 
       - uses: actions/upload-artifact@v4
         with:
-          name: Mcrar-${{ github.sha }}
-          path: build/Mcrar.zip
+          name: mcRAR-${{ github.sha }}
+          path: build/mcRAR.zip
           retention-days: 30
