@@ -1,9 +1,14 @@
 name: Build
 
+# Her push'ta derler ve mcRAR.zip'i artifact olarak yükler.
+# v* etiketi push edilince (ör. git tag v1.4.4 && git push origin v1.4.4) DMG + ZIP ile GitHub Release da oluşturur.
 on:
   push:
   pull_request:
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -17,11 +22,37 @@ jobs:
       - name: Build mcRAR.app
         run: ./build.sh
 
-      - name: Zip app
-        run: ditto -c -k --keepParent build/mcRAR.app build/mcRAR.zip
+      - name: Package
+        run: |
+          VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" build/mcRAR.app/Contents/Info.plist)
+          mkdir -p dist dmg
+          ditto -c -k --keepParent build/mcRAR.app "dist/mcRAR-$VERSION.zip"
+          ditto build/mcRAR.app dmg/mcRAR.app
+          ln -s /Applications dmg/Applications
+          hdiutil create -volname "mcRAR $VERSION" -srcfolder dmg -ov -format UDZO "dist/mcRAR-$VERSION.dmg"
+          # RELEASE_NOTES.md'den yalnızca bu sürümün bölümü
+          awk -v h="## mcRAR $VERSION" '$0==h{f=1;next} /^## /{f=0} f' RELEASE_NOTES.md > dist/notes.md
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
 
       - uses: actions/upload-artifact@v4
         with:
-          name: mcRAR-${{ github.sha }}
-          path: build/mcRAR.zip
+          name: mcRAR-${{ env.VERSION }}-${{ github.sha }}
+          path: |
+            dist/*.zip
+            dist/*.dmg
           retention-days: 30
+
+      - name: Check tag matches app version
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          [ "${GITHUB_REF_NAME#v}" = "$VERSION" ] || { echo "Tag $GITHUB_REF_NAME, Info.plist sürümü $VERSION ile uyuşmuyor"; exit 1; }
+
+      - name: Publish GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          name: mcRAR ${{ env.VERSION }}
+          body_path: dist/notes.md
+          files: |
+            dist/*.dmg
+            dist/*.zip
