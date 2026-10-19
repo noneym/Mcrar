@@ -9,15 +9,6 @@
   Native AppKit UI · Finder right-click menu · encrypted archives · multi-volume archives · 30+ formats
 </p>
 
-<p align="center">
-  <a href="README.tr.md">🇹🇷 Türkçe açıklama için tıklayın</a>
-</p>
-
-<p align="center">
-  <a href="https://youtu.be/yDB8AeCSBoQ"><img src="docs/video-poster-en.jpg" width="720" alt="Mcrar intro video on YouTube"></a><br>
-  <sub>▶ 1-minute intro video on YouTube · <a href="https://youtu.be/3pT3mBTTk98">Turkish version</a></sub>
-</p>
-
 ---
 
 ## Why
